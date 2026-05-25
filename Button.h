@@ -1,7 +1,7 @@
 #import <AppKit/AppKit.h>
 
-@interface Button : NSView
+@interface Button : NSButton
 
-- (instancetype)init;
+- (instancetype)initWithTitle:(NSString *)title action:(SEL)action;
 
 @end

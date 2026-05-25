@@ -9,7 +9,7 @@
 @interface AppDelegate ()
 - (void)setupMenu;
 - (void)setupWindow;
-- (void)showAlert;
+- (void)showAlert:(id)sender;
 @end
 
 @implementation AppDelegate
@@ -17,7 +17,6 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
   [self setupMenu];
   [self setupWindow];
-  [self showAlert];
 }
 
 - (void)setupMenu {
@@ -45,9 +44,14 @@
   [window setTitle:@"oct!"];
   [window makeKeyAndOrderFront:nil];
   [window center];
+
+  Button *button = [[Button alloc] initWithTitle:@"Say hello"
+                                          action:@selector(showAlert:)];
+  button.target = self;
+  [window.contentView addSubview:button];
 }
 
-- (void)showAlert {
+- (void)showAlert:(id)sender {
   NSAlert *alert = [[NSAlert alloc] init];
   alert.messageText = @"Hello, world!";
 
