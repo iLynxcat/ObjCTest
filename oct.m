@@ -1,6 +1,8 @@
 #import <AppKit/AppKit.h>
 #import <Foundation/Foundation.h>
 
+#import "Button.h"
+
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 @end
 
