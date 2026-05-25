@@ -1,4 +1,6 @@
-CLANG_FLAGS := -framework AppKit
+CLANG_FLAGS := \
+	-fobjc-arc \
+	-framework AppKit
 SOURCE_FILES := \
 	oct.m \
 	Button.m
