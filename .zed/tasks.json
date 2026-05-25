@@ -1,5 +1,10 @@
 [
 	{
+		"label": "Build all",
+		"command": "make",
+		"args": ["clean", "all"],
+	},
+	{
 		"label": "Run oct",
 		"command": "$ZED_WORKTREE_ROOT/oct",
 	},
