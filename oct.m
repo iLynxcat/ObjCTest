@@ -8,6 +8,10 @@
 
 @interface AppDelegate ()
 
+@property(nonatomic, strong) NSTimer *timer;
+@property int frame;
+@property(nonatomic, strong) NSTextField *frameLabel;
+
 - (void)setupMenu;
 - (void)setupWindow;
 - (void)showAlert:(id)sender;
@@ -19,6 +23,16 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
   [self setupMenu];
   [self setupWindow];
+
+  NSTimer *timer = [NSTimer
+      scheduledTimerWithTimeInterval:1.0 / 20.0
+                             repeats:YES
+                               block:^(NSTimer *timer) {
+                                 self.frame = (self.frame + 1) % 20;
+                                 self.frameLabel.stringValue = [NSString
+                                     stringWithFormat:@"Frame: %d", self.frame];
+                               }];
+  self.timer = timer;
 }
 
 - (void)setupMenu {
@@ -46,11 +60,11 @@
   [window makeKeyAndOrderFront:nil];
   [window center];
 
+  NSView *contentView = window.contentView;
+
   Button *button = [[Button alloc] initWithTitle:@"Say hello"
                                           action:@selector(showAlert:)];
   button.target = self;
-
-  NSView *contentView = window.contentView;
   [contentView addSubview:button];
   button.translatesAutoresizingMaskIntoConstraints = NO;
 
@@ -61,6 +75,16 @@
                                      constant:24],
     [button.widthAnchor constraintEqualToConstant:88],
     [button.heightAnchor constraintEqualToConstant:31],
+  ]];
+
+  NSTextField *label = [NSTextField labelWithString:@"Frame: 0"];
+  self.frameLabel = label;
+  [contentView addSubview:label];
+  label.translatesAutoresizingMaskIntoConstraints = NO;
+  [NSLayoutConstraint activateConstraints:@[
+    [label.leadingAnchor constraintEqualToAnchor:contentView.leadingAnchor
+                                        constant:24],
+    [label.topAnchor constraintEqualToAnchor:button.bottomAnchor constant:12],
   ]];
 }
 
