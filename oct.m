@@ -48,7 +48,17 @@
   Button *button = [[Button alloc] initWithTitle:@"Say hello"
                                           action:@selector(showAlert:)];
   button.target = self;
-  [window.contentView addSubview:button];
+
+  NSView *contentView = window.contentView;
+  [contentView addSubview:button];
+  button.translatesAutoresizingMaskIntoConstraints = NO;
+
+  [NSLayoutConstraint activateConstraints:@[
+    [button.leadingAnchor constraintEqualToAnchor:contentView.leadingAnchor
+                                         constant:24],
+    [button.topAnchor constraintEqualToAnchor:contentView.topAnchor
+                                     constant:24],
+  ]];
 }
 
 - (void)showAlert:(id)sender {

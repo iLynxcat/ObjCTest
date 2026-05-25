@@ -9,7 +9,7 @@
 @implementation Button
 
 - (instancetype)initWithTitle:(NSString *)title action:(SEL)action {
-  self = [super initWithFrame:NSMakeRect(24, 24, 88, 31)];
+  self = [super initWithFrame:NSMakeRect(0, 0, 88, 31)];
   if (self) {
     self.title = title;
     self.action = action;
