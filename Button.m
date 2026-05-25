@@ -13,7 +13,7 @@
   if (self) {
     self.title = title;
     self.action = action;
-    self.bezelStyle = NSBezelStyleRecessed;
+    self.bezelStyle = NSBezelStyleGlass;
   }
 
   return self;
