@@ -6,7 +6,7 @@ SOURCE_FILES := \
 	Button.m
 
 .PHONY: all clean run
-all: clean oct oct-dbg
+all: oct oct-dbg
 clean:
 	@rm -f ./oct ./oct-dbg
 run: oct
