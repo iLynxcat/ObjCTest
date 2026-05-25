@@ -10,7 +10,7 @@
 		"program": "$ZED_WORKTREE_ROOT/oct-dbg",
 		"build": {
 			"command": "make",
-			"args": ["oct-dbg"],
+			"args": ["clean", "oct-dbg"],
 		},
 	},
 ]
