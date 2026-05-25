@@ -1,0 +1,6 @@
+[
+	{
+		"label": "Run oct",
+		"command": "$ZED_WORKTREE_ROOT/oct",
+	},
+]
