@@ -58,6 +58,8 @@
                                          constant:24],
     [button.topAnchor constraintEqualToAnchor:contentView.topAnchor
                                      constant:24],
+    [button.widthAnchor constraintEqualToConstant:88],
+    [button.heightAnchor constraintEqualToConstant:31],
   ]];
 }
 
