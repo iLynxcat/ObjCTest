@@ -7,9 +7,11 @@
 @end
 
 @interface AppDelegate ()
+
 - (void)setupMenu;
 - (void)setupWindow;
 - (void)showAlert:(id)sender;
+
 @end
 
 @implementation AppDelegate
@@ -40,7 +42,6 @@
                           NSWindowStyleMaskResizable | NSWindowStyleMaskTitled
                   backing:NSBackingStoreBuffered
                     defer:NO];
-
   [window setTitle:@"oct!"];
   [window makeKeyAndOrderFront:nil];
   [window center];
@@ -65,10 +66,13 @@
 
 - (void)showAlert:(id)sender {
   NSAlert *alert = [[NSAlert alloc] init];
-  alert.messageText = @"Hello, world!";
-
+  [alert setMessageText:@"Hello, world!"];
   [alert addButtonWithTitle:@"Dismiss"];
-  [alert runModal];
+
+  [alert beginSheetModalForWindow:[NSApp mainWindow]
+                completionHandler:^(NSModalResponse response) {
+                  printf("Alert dismissed\n");
+                }];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:
