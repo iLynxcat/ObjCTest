@@ -12,6 +12,6 @@ clean:
 run: oct
 	./oct
 oct:
-	clang $(SOURCE_FILES) -o oct $(CLANG_FLAGS)
+	clang $(SOURCE_FILES) -o oct $(CLANG_FLAGS) -O2
 oct-dbg:
-	clang $(SOURCE_FILES) -o oct-dbg $(CLANG_FLAGS) -g
+	clang $(SOURCE_FILES) -o oct-dbg $(CLANG_FLAGS) -g -O0
