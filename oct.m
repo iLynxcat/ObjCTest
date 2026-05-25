@@ -8,9 +8,11 @@
 
 @interface AppDelegate ()
 
+@property(nonatomic, strong) NSWindow *window;
+
+@property(nonatomic) NSInteger count;
+@property(nonatomic, strong) NSTextField *countLabel;
 @property(nonatomic, strong) NSTimer *timer;
-@property int frame;
-@property(nonatomic, strong) NSTextField *frameLabel;
 
 - (void)setupMenu;
 - (void)setupWindow;
@@ -24,13 +26,15 @@
   [self setupMenu];
   [self setupWindow];
 
+  __weak AppDelegate *weakSelf = self;
   NSTimer *timer = [NSTimer
       scheduledTimerWithTimeInterval:1.0 / 20.0
                              repeats:YES
                                block:^(NSTimer *timer) {
-                                 self.frame = (self.frame + 1) % 20;
-                                 self.frameLabel.stringValue = [NSString
-                                     stringWithFormat:@"Frame: %d", self.frame];
+                                 weakSelf.count = (weakSelf.count + 1) % 20;
+                                 weakSelf.countLabel.stringValue =
+                                     [NSString stringWithFormat:@"Frame: %ld",
+                                                                weakSelf.count];
                                }];
   self.timer = timer;
 }
@@ -78,7 +82,7 @@
   ]];
 
   NSTextField *label = [NSTextField labelWithString:@"Frame: 0"];
-  self.frameLabel = label;
+  self.countLabel = label;
   [contentView addSubview:label];
   label.translatesAutoresizingMaskIntoConstraints = NO;
   [NSLayoutConstraint activateConstraints:@[
